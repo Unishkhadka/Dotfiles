@@ -10,6 +10,6 @@ Clone:
 
 After cloning this you can copy or move your desired folders to .config folder
 
-For Rofi & polybar you can visit __[Aditya Shakya](https://github.com/adi1090x)__. But after moving the polybar make sure you add `exec --no-startup-id bash ~/.config/polybar/launch.sh --forest ` into your `~/ .config/i3/config`(or what you use).
+For Rofi & polybar you can visit __[Aditya Shakya](https://github.com/adi1090x)__. But after moving the polybar make sure you add `exec --no-startup-id bash ~/.config/polybar/launch.sh --forest ` into your `.config/i3/config`(or what you use).
 
 
