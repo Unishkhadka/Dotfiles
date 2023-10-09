@@ -22,7 +22,7 @@
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango: Noto Sans Regular 10
+font pango: Jetbrains Mono Regular 10
 
 # set the mod key to the winkey:
 set $mod Mod4
@@ -57,7 +57,7 @@ gaps inner 6
 gaps outer 3
 
 # show window title bars (not officially supported with i3gaps)
-#default_border normal
+default_border none
 
 # window title alignment
 #title_align center
@@ -171,14 +171,14 @@ bindcode $mod+Shift+90 	 move container to workspace  $ws10
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+Return exec /usr/bin/alacritty
 
 # kill focused window
 bindsym $mod+q kill
 
 # exit-menu
-bindsym $mod+Shift+e exec ~/.config/rofi-unish/files/powermenu/type-1/powermenu.sh
-bindsym $mod+Shift+p exec ~/.config/rofi-unish/files/applets/bin/battery.sh
+bindsym $mod+Shift+e exec ~/.config/rofi/powermenu/type-1/powermenu.sh
+bindsym $mod+Shift+p exec ~/.config/rofi/applets/bin/battery.sh
 
 # Lock the system
 # lock with a picture:
@@ -187,7 +187,7 @@ bindsym $mod+Shift+p exec ~/.config/rofi-unish/files/applets/bin/battery.sh
 bindsym $mod+l exec ~/.config/i3/scripts/blur-lock
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+# bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to update i3)
 bindsym $mod+Shift+r restart
@@ -288,12 +288,13 @@ bindsym $mod+p exec /usr/local/bin/switch-audio-port
 
 ## App shortcuts
 bindsym $mod+w exec /usr/bin/firefox
-bindsym $mod+m exec /usr/bin/TelegramDesktop
+bindsym $mod+m exec /usr/bin/telegram-desktop
 bindsym $mod+Shift+m exec /usr/bin/viber
 bindsym $mod+Shift+s exec /usr/bin/signal-desktop
 bindsym $mod+n exec /usr/bin/thunar
+bindsym $mod+Shift+c exec /usr/bin/coretime
 bindsym Print exec scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
-bindsym Shift+Print exec /usr/bin/flameshot
+bindsym Shift+Print exec /usr/bin/flameshot gui
 # Power Profiles menu switcher (rofi)
 # bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 
@@ -324,15 +325,15 @@ set $ws10 "10"
 #workspace $ws5 output HDMI-0
 
 # bind program to workspace and focus to them on startup:
-assign [class="Xfce4-terminal"] $ws1
+assign [class="(?i)alacritty"] $ws1
 assign [class="(?i)firefox"] $ws2
 assign [class="Thunar"] $ws3
 assign [class="(?i)viber"] $ws4
 assign [class="(?i)telegramDesktop"] $ws5
-assign [class="(?i)signal-desktop"] $ws6
+assign [class="(?i)signalDesktop"] $ws6
 
 # automatic set focus new window if it opens on another workspace than the current:
-for_window [class=Xfce4-terminal] focus
+for_window [class=(?i)alacritty] focus
 for_window [class=(?i)firefox] focus
 for_window [class=Thunar] focus
 for_window [class=(?i)viber] focus
@@ -576,7 +577,7 @@ client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
 
 ## rofi bindings fancy application menu ($mod+d /F9 optional disabled)
 
-bindsym $mod+d exec ~/.config/rofi-unish/files/launchers/type-2/launcher.sh
+bindsym $mod+d exec ~/.config/rofi/launchers/type-2/launcher.sh
 # rofi -modi drun -show drun \
 		# -config ~/.config/rofi-unish/files/launchers/type-2/launcher.sh
 
@@ -599,4 +600,5 @@ bindsym $mod+t exec rofi -show window \
 
 exec --no-startup-id polybar -r first
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id bash ~/.config/polybar/launch.sh --forest 
+# exec --no-startup-id bash ~/.config/polybar/forest/launch.sh  
+exec --no-startup-id sh -c 'sleep 0.1 && bash ~/.config/polybar/forest/launch.sh'
